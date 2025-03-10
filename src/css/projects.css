@@ -1,0 +1,19 @@
+.char{
+    transform: translateY(115px);
+    transition: transform 0.5s;
+}
+h2{
+    clip-path: polygon(0 0,100% 0,100% 100%,0% 100%);
+    
+}
+#myproj{
+    line-height: 3.9rem;
+    font-size: 2.7rem;
+}
+@media screen and (max-width: 768px){
+    #myproj{
+        line-height: 2.9rem;
+        font-size: 2rem;
+    }
+    
+}

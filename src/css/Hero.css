@@ -1,0 +1,19 @@
+.char{
+    transform: translateY(115px);
+    transition: transform 0.5s;
+}
+h1{
+    clip-path: polygon(0 0,100% 0,100% 100%,0% 100%);
+    
+}
+#intro{
+    line-height: 5.9rem;
+    font-size: 4rem;
+}
+@media screen and (max-width: 768px){
+    #intro{
+        line-height: 2.9rem;
+        font-size: 2rem;
+    }
+    
+}
