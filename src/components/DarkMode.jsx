@@ -4,40 +4,49 @@ import { useRecoilState } from "recoil";
 import darkmode from "../Atom";
 
 const DarkModeToggle = () => {
-  const [darkMode, setDarkMode] = useRecoilState(darkmode);
+  const [isDark, setIsDark] = useRecoilState(darkmode);
 
   useEffect(() => {
+    // Check local storage or system preference on mount
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setDarkMode(savedTheme === "dark");
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    
+    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      setIsDark(false);
+      document.documentElement.classList.remove("dark");
     }
-  }, []);
+  }, [setIsDark]);
 
   const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    const newTheme = !darkMode ? "dark" : "light";
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-    localStorage.setItem("theme", newTheme); // Save theme preference
+    const newMode = !isDark;
+    setIsDark(newMode);
+    
+    if (newMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
   };
 
   return (
     <button
       onClick={toggleTheme}
-      className="flex items-center justify-center w-12 h-12  rounded-full p-2 transition-colors duration-500 ease-in-out"
+      className="flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 hover:bg-mist/10"
       aria-label="Toggle Dark Mode"
     >
-      {darkMode ? (
-        <FaSun
-        className="w-6 h-6 text-[#FEFF9F] transform transition-transform duration-500 ease-in-out rotate-0"
-        />
+      {isDark ? (
+        <FaMoon className="w-5 h-5 text-mist hover:text-silk transition-colors duration-300" />
       ) : (
-          <FaMoon
-            className="w-6 h-6 text-[#393E46] transform transition-transform duration-500 ease-in-out rotate-180"
-          />
+        <FaSun className="w-5 h-5 text-gold hover:text-silk transition-colors duration-300" />
       )}
     </button>
   );
 };
 
 export default DarkModeToggle;
+

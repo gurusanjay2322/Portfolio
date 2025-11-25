@@ -1,32 +1,34 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "class", // or 'media' or 'class'
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        oswald: ["Oswald", "sans-serif"],
-        Abril: ["Abril Fatface", "serif"],
-        Ubuntu: ["Ubuntu", "sans-serif"],
-        Galada: ["Galada", "cursive"],
-        RockSalt: ["Rock Salt", "cursive"],
-        DmSerif: ["DM Serif Display", "serif"],
+        sans: ["Lato", "sans-serif"],
+        serif: ["Cinzel", "serif"], // For headers/lore
+        rune: ["Cinzel Decorative", "cursive"], // For special accents
       },
       colors: {
-        text: "#eaf6f3",
-        background: "#2E073F",
-        background2: "#5a316a",
-        primary: "#FFFFF0",
-        secondary: "#763663",
-        accent: "#b76961",
-        lightText: "#0b0e19",
-        lightBackground: "#F4F6FF",
-        lightBackground2: "#F4F6FF",
-        lightPrimary: "#5c69b9",
-        lightSecondary: "#bba1d6",
-        lightAccent: "#b87ec7",
+        void: "#0a0a0c", // Deepest background
+        voidLight: "#15151a", // Lighter background
+        paper: "#f5f5f5", // Light mode background (Bone/White Palace)
+        ink: "#1a1a1a", // Light mode text
+        silk: "#ed213a", // Hornet Red
+        silkDark: "#93291e",
+        gold: "#f8b500", // Brass/Gold accents
+        goldDim: "#b38800",
+        mist: "#bdc3c7", // Silver/Mist
+        mistDark: "#2c3e50",
+        text: "#ecf0f1",
+        textDim: "#95a5a6",
       },
+      backgroundImage: {
+        'noise': "url('https://grainy-gradients.vercel.app/noise.svg')", // Subtle texture if needed
+      },
+      cursor: {
+        'none': 'none',
+      }
     },
   },
   plugins: [],

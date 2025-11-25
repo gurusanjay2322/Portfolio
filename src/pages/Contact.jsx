@@ -1,186 +1,157 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import emailjs from "emailjs-com";
-import backgroundImage from '../assets/backgrounds/axiom-pattern.png';
-import { FaGithubSquare, FaInstagram, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { FaGithubSquare, FaInstagram, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import SplitType from "split-type";
 import { ScrollTrigger } from 'gsap/all';
 
 function Contact() {
   const form = useRef();
-  const contactRef = useRef(null);
-
+  const containerRef = useRef(null);
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-    const text = new SplitType("#contactTitle", { types: "chars" });
-    const timeline = gsap.timeline({
+    // Firefly animation
+    gsap.to(".firefly", {
+      y: "random(-20, 20)",
+      x: "random(-20, 20)",
+      opacity: "random(0.5, 1)",
+      duration: "random(2, 4)",
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: 0.1
+    });
+
+    // Form reveal
+    gsap.from(".sanctum-form", {
       scrollTrigger: {
-        trigger: "#contact",
+        trigger: containerRef.current,
         start: "top center",
-        end: "bottom center",
       },
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
     });
-    timeline.to(".char", {
-      y: 0,
-      stagger: 0.05,
-      delay: 0.1,
-      duration: 0.1,
-    });
-  });
+  }, { scope: containerRef });
 
   const sendEmail = (e) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_pech1kl",
-        "template_zye65av",
-        form.current,
-        "i2luGLQyGsOubwwEU"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          alert("Message sent successfully!");
-        },
-        (error) => {
-          console.log(error.text);
-          alert("Failed to send message.");
-        }
-      );
-
+    emailjs.sendForm("service_pech1kl", "template_zye65av", form.current, "i2luGLQyGsOubwwEU")
+      .then(() => alert("Message sent successfully!"), () => alert("Failed to send message."));
     e.target.reset();
   };
 
   return (
-    <section id="contact" ref={contactRef} className="relative min-h-screen">
-      <div
-        className="min-h-screen bg-center bg-repeat"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        {/* Add a subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/5 to-background/10" />
-        
-        <div className="relative z-10 container mx-auto px-4 py-20">
-          <h1 id="contactTitle" className="text-2xl md:text-5xl font-RockSalt text-lightPrimary dark:text-primary font-bold text-center mb-16">
-            Let's Connect
-          </h1>
+    <section id="contact" ref={containerRef} className="relative min-h-screen bg-paper dark:bg-void flex items-center justify-center overflow-hidden py-20 transition-colors duration-500">
+      
+      {/* Fireflies Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <div 
+            key={i}
+            className="firefly absolute w-1 h-1 bg-gold rounded-full blur-[1px]"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
+      </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Left Column - Contact Info & Social */}
-            <div className="space-y-8">
-              <div className="bg-lightSecondary/10 dark:bg-secondary/10 backdrop-blur-sm rounded-2xl p-8 border border-lightAccent/20 dark:border-accent/20">
-                <h2 className="text-xl font-RockSalt text-lightPrimary dark:text-primary font-bold mb-6">
-                  Get in Touch
-                </h2>
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <FaEnvelope className="text-2xl text-lightAccent dark:text-accent" />
-                    <div>
-                      <h3 className="font-semibold text-lightText dark:text-white">Email</h3>
-                      <p className="text-lightText/80 dark:text-white/80">gurusanjay2322@gmail.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <FaPhone className="text-2xl text-lightAccent dark:text-accent" />
-                    <div>
-                      <h3 className="font-semibold text-lightText dark:text-white">Phone</h3>
-                      <p className="text-lightText/80 dark:text-white/80">+91 1234567890</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <FaMapMarkerAlt className="text-2xl text-lightAccent dark:text-accent" />
-                    <div>
-                      <h3 className="font-semibold text-lightText dark:text-white">Location</h3>
-                      <p className="text-lightText/80 dark:text-white/80">Chennai, India</p>
-                    </div>
-                  </div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-serif text-gold mb-4 tracking-widest uppercase">The Sanctum</h2>
+          <p className="text-mistDark dark:text-mist font-serif italic">"Send a vessel into the void"</p>
+        </div>
+
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-12 items-center">
+          
+          {/* Left: Social Pillars */}
+          <div className="w-full md:w-1/2 space-y-8">
+            <div className="p-8 border border-gold/20 bg-white/50 dark:bg-voidLight/50 backdrop-blur-sm rounded-lg relative overflow-hidden group hover:border-silk/50 transition-colors duration-500">
+              <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-gold to-transparent opacity-50"></div>
+              
+              <h3 className="text-2xl font-serif text-ink dark:text-text mb-6">Connect</h3>
+              
+              <div className="space-y-6">
+                <a href="mailto:gurusanjay2322@gmail.com" className="flex items-center gap-4 text-gray-600 dark:text-mist hover:text-silk transition-colors group/link">
+                  <FaEnvelope className="text-xl" />
+                  <span className="group-hover/link:translate-x-2 transition-transform">gurusanjay2322@gmail.com</span>
+                </a>
+                <div className="flex items-center gap-4 text-gray-600 dark:text-mist">
+                  <FaMapMarkerAlt className="text-xl" />
+                  <span>Chennai, India</span>
                 </div>
               </div>
 
-              <div className="bg-lightSecondary/10 dark:bg-secondary/10 backdrop-blur-sm rounded-2xl p-8 border border-lightAccent/20 dark:border-accent/20">
-                <h2 className="text-xl font-RockSalt text-lightPrimary dark:text-primary font-bold mb-6">
-                  Social Links
-                </h2>
-                <div className="flex space-x-6">
+              <div className="mt-8 flex gap-6">
+                {[
+                  { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/guru-sanjay-65b7a5316/" },
+                  { icon: <FaGithubSquare />, link: "https://github.com/gurusanjay2322" },
+                  { icon: <FaInstagram />, link: "https://www.instagram.com/__.gs.__22" }
+                ].map((social, idx) => (
                   <a 
-                    href="https://www.linkedin.com/in/guru-sanjay-65b7a5316/" 
+                    key={idx}
+                    href={social.link}
                     target="_blank"
-                    className="group"
+                    rel="noopener noreferrer"
+                    className="text-2xl text-gray-500 dark:text-textDim hover:text-gold hover:scale-110 transition-all duration-300"
                   >
-                    <FaLinkedin className="text-3xl text-lightAccent dark:text-accent transform group-hover:scale-110 transition-transform duration-300" />
+                    {social.icon}
                   </a>
-                  <a 
-                    href="https://github.com/gurusanjay2322" 
-                    target="_blank"
-                    className="group"
-                  >
-                    <FaGithubSquare className="text-3xl text-lightAccent dark:text-accent transform group-hover:scale-110 transition-transform duration-300" />
-                  </a>
-                  <a 
-                    href="https://www.instagram.com/__.gs.__22" 
-                    target="_blank"
-                    className="group"
-                  >
-                    <FaInstagram className="text-3xl text-lightAccent dark:text-accent transform group-hover:scale-110 transition-transform duration-300" />
-                  </a>
-                </div>
+                ))}
               </div>
-            </div>
-
-            {/* Right Column - Contact Form */}
-            <div className="bg-lightSecondary/10 dark:bg-secondary/10 backdrop-blur-sm rounded-2xl p-8 border border-lightAccent/20 dark:border-accent/20">
-              <form ref={form} onSubmit={sendEmail} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-lightText dark:text-white mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="user_name"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-lightSecondary/20 dark:bg-secondary/20 border border-lightAccent/30 dark:border-accent/30 text-lightText dark:text-white focus:outline-none focus:ring-2 focus:ring-lightAccent dark:focus:ring-accent transition-all duration-300"
-                    placeholder="John Doe"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-lightText dark:text-white mb-2">
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-lightSecondary/20 dark:bg-secondary/20 border border-lightAccent/30 dark:border-accent/30 text-lightText dark:text-white focus:outline-none focus:ring-2 focus:ring-lightAccent dark:focus:ring-accent transition-all duration-300"
-                    placeholder="john@example.com"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-lightText dark:text-white mb-2">
-                    Your Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-lightSecondary/20 dark:bg-secondary/20 border border-lightAccent/30 dark:border-accent/30 text-lightText dark:text-white focus:outline-none focus:ring-2 focus:ring-lightAccent dark:focus:ring-accent transition-all duration-300 resize-none"
-                    placeholder="Your message here..."
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 px-6 bg-lightAccent dark:bg-accent text-white rounded-lg font-semibold hover:bg-lightAccent/90 dark:hover:bg-accent/90 transform hover:scale-[1.02] transition-all duration-300"
-                >
-                  Send Message
-                </button>
-              </form>
             </div>
           </div>
+
+          {/* Right: Contact Form */}
+          <div className="w-full md:w-1/2 sanctum-form">
+            <form ref={form} onSubmit={sendEmail} className="space-y-6 relative">
+              {/* Decorative Border */}
+              <div className="absolute -inset-4 border border-mist/10 rounded-xl pointer-events-none"></div>
+
+              <div className="group">
+                <input
+                  type="text"
+                  name="user_name"
+                  required
+                  placeholder="Name of the Traveler"
+                  className="w-full bg-white dark:bg-voidLight border-b border-mist/30 p-4 text-ink dark:text-text placeholder-textDim/50 focus:outline-none focus:border-silk transition-colors"
+                />
+              </div>
+              
+              <div className="group">
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Signal Frequency (Email)"
+                  className="w-full bg-white dark:bg-voidLight border-b border-mist/30 p-4 text-ink dark:text-text placeholder-textDim/50 focus:outline-none focus:border-silk transition-colors"
+                />
+              </div>
+
+              <div className="group">
+                <textarea
+                  name="message"
+                  rows="4"
+                  required
+                  placeholder="Inscribe your message..."
+                  className="w-full bg-voidLight border-b border-mist/30 p-4 text-text placeholder-textDim/50 focus:outline-none focus:border-silk transition-colors resize-none"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-4 bg-white dark:bg-void border border-gold/30 text-gold hover:bg-gold hover:text-white dark:hover:text-void transition-all duration-300 uppercase tracking-[0.2em] font-bold text-sm relative overflow-hidden group"
+              >
+                <span className="relative z-10">Transmit</span>
+                <div className="absolute inset-0 bg-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              </button>
+            </form>
+          </div>
+
         </div>
       </div>
     </section>
@@ -188,3 +159,4 @@ function Contact() {
 }
 
 export default Contact;
+

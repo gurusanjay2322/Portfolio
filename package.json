@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.0",
     "emailjs-com": "^3.2.0",
     "lenis": "^1.1.14",
     "lucide-react": "^0.452.0",
@@ -21,7 +23,8 @@
     "react-router-dom": "^6.26.2",
     "react-vertical-timeline-component": "^3.6.0",
     "recoil": "^0.7.7",
-    "split-type": "^0.3.4"
+    "split-type": "^0.3.4",
+    "three": "^0.181.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
