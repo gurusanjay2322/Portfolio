@@ -6,16 +6,12 @@ function LoadingScreen({ onComplete }) {
   const textRef = useRef(null);
   const pathRef = useRef(null);
 
+  const [showButton, setShowButton] = React.useState(false);
+
   useEffect(() => {
     const tl = gsap.timeline({
       onComplete: () => {
-        // Fade out container then call onComplete
-        gsap.to(containerRef.current, {
-          opacity: 0,
-          duration: 0.8,
-          ease: "power2.inOut",
-          onComplete: onComplete
-        });
+        setShowButton(true);
       }
     });
 
@@ -44,7 +40,17 @@ function LoadingScreen({ onComplete }) {
       ease: "sine.inOut"
     });
 
-  }, [onComplete]);
+  }, []);
+
+  const handleEnter = () => {
+    window.dispatchEvent(new Event("startMusic"));
+    gsap.to(containerRef.current, {
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.inOut",
+      onComplete: onComplete
+    });
+  };
 
   return (
     <div 
@@ -81,6 +87,16 @@ function LoadingScreen({ onComplete }) {
           Preparing the Kingdom
         </p>
       </div>
+
+      {/* Enter Button */}
+      {showButton && (
+        <button 
+          onClick={handleEnter}
+          className="relative z-50 mt-12 px-8 py-3 border border-silk/30 text-silk font-serif tracking-[0.2em] uppercase text-sm hover:bg-silk/10 hover:border-silk hover:shadow-[0_0_20px_rgba(237,33,58,0.3)] transition-all duration-500 animate-in fade-in slide-in-from-bottom-4 cursor-pointer"
+        >
+          Enter Kingdom
+        </button>
+      )}
     </div>
   );
 }

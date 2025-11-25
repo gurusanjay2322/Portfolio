@@ -34,7 +34,18 @@ function Navbar() {
       });
     }
 
+    // Listen for manual start from Loading Screen
+    const handleStartMusic = () => {
+      if (audioRef.current) {
+        audioRef.current.play().then(() => {
+          setIsMusicPlaying(true);
+        }).catch(e => console.error("Play failed:", e));
+      }
+    };
+    window.addEventListener("startMusic", handleStartMusic);
+
     return () => {
+      window.removeEventListener("startMusic", handleStartMusic);
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;

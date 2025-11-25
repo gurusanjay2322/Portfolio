@@ -41,7 +41,7 @@ const Cursor = () => {
   return (
     <div 
       ref={cursorRef} 
-      className={`fixed top-0 left-0 pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ${isHovering ? 'scale-125' : 'scale-100'}`}
+      className={`fixed top-0 left-0 pointer-events-none z-[10000] transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ${isHovering ? 'scale-125' : 'scale-100'}`}
     >
       <img 
         src={hornetGif} 
