@@ -7,6 +7,8 @@ import gsap from "gsap";
 import mossGrotto from "../assets/mossgrotto.mp3";
 import hornetNeedle from "../assets/hornetneedle.gif";
 
+import resume from "../assets/GuruSanjay_SDE (2).pdf";
+
 function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobile, setIsMobile] = useState(false);
@@ -165,6 +167,14 @@ function Navbar() {
               );
             })}
             <div className="border-l border-mist/20 pl-6 flex items-center gap-4">
+              <a 
+                href={resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-1.5 border border-silk/50 text-silk text-xs font-bold tracking-widest uppercase rounded-full hover:bg-silk hover:text-white transition-all duration-300"
+              >
+                Resume
+              </a>
               <button 
                 onClick={toggleMusic}
                 className="relative w-12 h-12 flex items-center justify-center rounded-full text-gray-600 dark:text-mist hover:text-silk hover:bg-silk/10 hover:shadow-[0_0_15px_rgba(237,33,58,0.3)] transition-all duration-300"
@@ -187,6 +197,14 @@ function Navbar() {
         <div className="flex justify-between items-center bg-white/90 dark:bg-void/90 backdrop-blur-md p-4 rounded-b-2xl border-b border-gold/20">
           <span className="font-serif text-gold tracking-widest">JOURNEY</span>
           <div className="flex items-center gap-4">
+            <a 
+              href={resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1 border border-silk/50 text-silk text-[10px] font-bold tracking-widest uppercase rounded-full hover:bg-silk hover:text-white transition-all duration-300"
+            >
+              Resume
+            </a>
             <button 
               onClick={toggleMusic}
               className="relative w-12 h-12 flex items-center justify-center rounded-full text-gray-600 dark:text-mist hover:text-silk hover:bg-silk/10 hover:shadow-[0_0_15px_rgba(237,33,58,0.3)] transition-all duration-300"

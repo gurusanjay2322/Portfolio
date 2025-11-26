@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitType from "split-type";
 import hornetShoe from "../assets/hornetshoe.png";
+import resume from "../assets/GuruSanjay_SDE (2).pdf";
 import adinoAudio from "../assets/voicelines/adino_hornet.mp3";
 import garamaAudio from "../assets/voicelines/garama_hornet.mp3";
 import hegaleAudio from "../assets/voicelines/hegale_hornet.mp3";
@@ -118,6 +119,14 @@ function Hero() {
       {/* Main Content */}
       <div className="hero-parallax relative z-10 text-center flex flex-col items-center gap-6">
         <div className="relative">
+          {/* Available to Work Badge */}
+          <div className="flex justify-center mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-silk/10 border border-silk/30 rounded-full backdrop-blur-sm">
+              <span className="w-2 h-2 bg-silk rounded-full animate-pulse shadow-[0_0_8px_rgba(237,33,58,0.8)]"></span>
+              <span className="text-silk text-xs tracking-widest uppercase font-bold">Available to Work</span>
+            </div>
+          </div>
+
           <h1 id="hero-title" className="font-serif text-4xl sm:text-5xl md:text-8xl lg:text-9xl text-ink dark:text-text font-bold tracking-tighter">
             GURU SANJAY
           </h1>
@@ -129,13 +138,25 @@ function Hero() {
           Weaving Code Into Worlds
         </p>
 
-        <button 
-          onClick={() => window.lenis ? window.lenis.scrollTo('#About') : document.getElementById('About').scrollIntoView({ behavior: 'smooth' })}
-          className="hero-cta mt-12 px-8 py-3 border border-silk text-silk hover:bg-silk hover:text-white transition-all duration-300 tracking-widest uppercase text-sm font-bold relative group overflow-hidden"
-        >
-          <span className="relative z-10">Enter the Journey</span>
-          <div className="absolute inset-0 bg-silk transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-        </button>
+        <div className="flex flex-col sm:flex-row gap-4 mt-12">
+          <button 
+            onClick={() => window.lenis ? window.lenis.scrollTo('#About') : document.getElementById('About').scrollIntoView({ behavior: 'smooth' })}
+            className="hero-cta px-8 py-3 border border-silk text-silk hover:bg-silk hover:text-white transition-all duration-300 tracking-widest uppercase text-sm font-bold relative group overflow-hidden"
+          >
+            <span className="relative z-10">Enter the Journey</span>
+            <div className="absolute inset-0 bg-silk transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+          </button>
+
+          <a 
+            href={resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-cta px-8 py-3 border border-gold text-gold hover:bg-gold hover:text-white transition-all duration-300 tracking-widest uppercase text-sm font-bold relative group overflow-hidden"
+          >
+            <span className="relative z-10">View Resume</span>
+            <div className="absolute inset-0 bg-gold transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+          </a>
+        </div>
       </div>
 
       {/* Floating Particles (CSS Animation) */}
