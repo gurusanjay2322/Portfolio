@@ -118,7 +118,7 @@ function Hero() {
       {/* Main Content */}
       <div className="hero-parallax relative z-10 text-center flex flex-col items-center gap-6">
         <div className="relative">
-          <h1 id="hero-title" className="font-serif text-6xl md:text-8xl lg:text-9xl text-ink dark:text-text font-bold tracking-tighter">
+          <h1 id="hero-title" className="font-serif text-4xl sm:text-5xl md:text-8xl lg:text-9xl text-ink dark:text-text font-bold tracking-tighter">
             GURU SANJAY
           </h1>
           <div className="absolute -top-10 -right-10 w-20 h-20 border-t-2 border-r-2 border-silk opacity-50"></div>
