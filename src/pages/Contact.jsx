@@ -76,9 +76,9 @@ function Contact() {
               <h3 className="text-2xl font-serif text-ink dark:text-text mb-6">Connect</h3>
               
               <div className="space-y-6">
-                <a href="mailto:gurusanjay2322@gmail.com" className="flex items-center gap-4 text-gray-600 dark:text-mist hover:text-silk transition-colors group/link">
+                <a href="mailto:rkgurusanjay@gmail.com" className="flex items-center gap-4 text-gray-600 dark:text-mist hover:text-silk transition-colors group/link">
                   <FaEnvelope className="text-xl" />
-                  <span className="group-hover/link:translate-x-2 transition-transform">gurusanjay2322@gmail.com</span>
+                  <span className="group-hover/link:translate-x-2 transition-transform">rkgurusanjay@gmail.com</span>
                 </a>
                 <div className="flex items-center gap-4 text-gray-600 dark:text-mist">
                   <FaMapMarkerAlt className="text-xl" />
