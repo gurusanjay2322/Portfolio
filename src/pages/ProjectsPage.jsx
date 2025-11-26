@@ -3,8 +3,8 @@ import ieee from '../assets/ieee.jpg';
 import movies from '../assets/movies.png';
 import cc from '../assets/cc.png';
 import seyal from '../assets/seyal.png';
-import innovatia from '../assets/innovatia.png';
-import valo from '../assets/valo.jpg';
+import medlens from '../assets/medlens.png';
+import eventoh from '../assets/eventoh.png';
 import firebase from '../assets/firebase.png';
 import flask from '../assets/flask.png';
 import { useGSAP } from "@gsap/react";
@@ -20,9 +20,9 @@ function ProjectsPage() {
     { src: movies, title: 'Movies-GS', description: 'A simple application developed using react springboot and mongodb to view and review movies', link: 'https://movies-gs.vercel.app', type: 'Main Quest' },
     { src: ieee, title: 'IEEE SMC', description: 'The website of IEEE SMC Student Branch Sairam', link: 'https://edu.ieee.org/sairamin-smc', type: 'Guild Quest' },
     { src: cc, title: 'Code Craft', description: 'The Website for 24 hours Code Craft Hackathon', link: 'https://code-craft.xyz', type: 'Event Quest' },
-    { src: innovatia, title: 'Innovatia 23', description: 'The Website for Innovatia 23 of Department Of Mtech CSE', link: 'https://innovatia23.tech', type: 'Event Quest' },
-    { src: seyal, title: 'Seyal Foundation', description: 'The Website for Seyal Foundation NGO', link: '', type: 'Side Quest' },
-    { src: valo, title: 'Valobot', description: 'A chatbot based on valorant developed using botpress and react', link: 'https://gurusanjay2322.github.io/Valobot-botpress/', type: 'Side Quest' },
+    { src: medlens, title: 'MedLens', description: 'An app to detect skin diseases from user photos and store data to help doctors', link: 'https://github.com/Ex-Rockstar/medlensv2', type: 'App Quest' },
+    { src: seyal, title: 'Seyal Foundation', description: 'The Website for Seyal Foundation NGO', link: 'https://github.com/Ex-Rockstar/seyal.git', type: 'Side Quest' },
+    { src: eventoh, title: 'Eventoh', description: 'An event managing service web application developed for a hackathon', link: 'https://eventoh.vercel.app', type: 'Event Quest' },
     { src: firebase, title: 'Firebase Analytics', description: 'A express server for getting the analytics from your firebase dashboard', link: 'https://github.com/gurusanjay2322/firebase-analytics-express', type: 'Tool Quest' },
     { src: flask, title: 'Speech To Text', description: 'A flask server for converting speech to text', link: 'https://github.com/gurusanjay2322/SpeechToText-Flask', type: 'Tool Quest' },
   ];

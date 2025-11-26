@@ -113,7 +113,7 @@ function Navbar() {
       lastScrollY.current = currentScrollY;
 
       // Update Active Section
-      const sections = ["contact", "Experience", "projects", "About", "home"]; // Check in reverse order
+      const sections = ["contact", "achievements", "Experience", "projects", "About", "home"]; // Check in reverse order
       let currentSection = "home";
       
       for (const section of sections) {
@@ -140,6 +140,7 @@ function Navbar() {
     { id: "About", label: "Lore" },
     { id: "projects", label: "Quests" },
     { id: "Experience", label: "Abilities" },
+    { id: "achievements", label: "Records" },
     { id: "contact", label: "Sanctum" },
   ];
 

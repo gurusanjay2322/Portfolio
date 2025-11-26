@@ -6,6 +6,7 @@ import ProjectsPage from "./ProjectsPage";
 import Contact from "./Contact";
 import Lenis from 'lenis';
 import Exp from "./Exp";
+import Achievements from "./Achievements";
 import LoadingScreen from "../components/LoadingScreen";
 import gsap from "gsap";
 
@@ -18,6 +19,7 @@ function Home() {
     <About key="about" />,
     <ProjectsPage key="projects" />,
     <Exp key="experience"/>,
+    <Achievements key="achievements" />,
     <Contact key="contact" />,
   ];
 
