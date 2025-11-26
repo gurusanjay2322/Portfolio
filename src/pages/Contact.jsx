@@ -1,13 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import { FaGithubSquare, FaInstagram, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from 'gsap/all';
+import SilksongAlert from "../components/SilksongAlert";
+import hornetSitting from "../assets/hornetsitting.webp";
 
 function Contact() {
   const form = useRef();
   const containerRef = useRef(null);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
@@ -39,7 +45,15 @@ function Contact() {
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs.sendForm("service_pech1kl", "template_zye65av", form.current, "i2luGLQyGsOubwwEU")
-      .then(() => alert("Message sent successfully!"), () => alert("Failed to send message."));
+      .then(() => {
+        setAlertTitle("Message Transmitted");
+        setAlertMessage("Your voice has reached the void. We shall respond in due time.");
+        setAlertOpen(true);
+      }, () => {
+        setAlertTitle("Transmission Failed");
+        setAlertMessage("The void is silent. Please try again later.");
+        setAlertOpen(true);
+      });
     e.target.reset();
   };
 
@@ -107,8 +121,17 @@ function Contact() {
           </div>
 
           {/* Right: Contact Form */}
-          <div className="w-full md:w-1/2 sanctum-form">
-            <form ref={form} onSubmit={sendEmail} className="space-y-6 relative">
+          <div className="w-full md:w-1/2 sanctum-form relative mt-12 md:mt-0">
+            {/* Hornet Sitting Asset */}
+            <div className="absolute -top-20 right-4 md:right-12 z-20 w-24 md:w-28 pointer-events-none">
+              <img 
+                src={hornetSitting} 
+                alt="Hornet Sitting" 
+                className="w-full h-auto drop-shadow-2xl"
+              />
+            </div>
+
+            <form ref={form} onSubmit={sendEmail} className="space-y-6 relative pt-8">
               {/* Decorative Border */}
               <div className="absolute -inset-4 border border-mist/10 rounded-xl pointer-events-none"></div>
 
@@ -154,6 +177,13 @@ function Contact() {
 
         </div>
       </div>
+      
+      <SilksongAlert 
+        isOpen={alertOpen} 
+        onClose={() => setAlertOpen(false)} 
+        title={alertTitle} 
+        message={alertMessage} 
+      />
     </section>
   );
 }
